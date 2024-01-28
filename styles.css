@@ -1,0 +1,52 @@
+:root {
+  /* GENERAL APP COLOR SCHEME */
+  --primary-background: #1b262c;
+  --primary-accent: #ececec;
+
+  /* TEAM COLORS */
+  --team-color-orange: #f3722c;
+  --team-color-blue: #274c77;
+  --team-color-green: #31572c;
+  --team-color-black: #242423;
+  --team-color-yellow: #ffc300;
+}
+
+* {
+  margin: 0;
+}
+
+body {
+  background-color: var(--primary-background);
+  width: 100vw;
+  height: 100vh;
+}
+
+/* APP STRUCTURE SETUP */
+.root {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.controls-wrapper {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn{
+  background-color: var(--primary-accent);
+  padding: 1em;
+  border-radius: 1em;
+}
+
+.teams-display-wrapper {
+  width: 100%;
+  height: 90%;
+}
+
