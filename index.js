@@ -26,7 +26,7 @@ root.appendChild(addTeamsControl)
 root.appendChild(teamsDisplay)
 
 // loop through the currentTeamCount from local storage
-// If value is greater than 0
+// If value is greater than 0.
 if (currentTeamCount > 0) {
   for (let i = 0; i < currentTeamCount; i++) {
     const teamCardTemplate = document.createElement('div')
@@ -56,19 +56,19 @@ addTeamsControl.appendChild(addTeamsBtn)
 const addTeam = () => {
   if (currentTeamCount < 5) {
     currentTeamCount++
-    // Push a team object into the array of teams
+    // Push a team object into the array of teams.
     teamsArray.push({
       teamName: '',
       teamColor: '',
       territoryCount: 0
     })
-    // **************** //
-    // Set local storage to hold array of teams
+
+    // Set local storage to hold array of teams.
     localStorage.setItem('teamsArray', JSON.stringify(teamsArray))
-    // **************** //
+    // Set local storage for quick acess to team count.
     localStorage.setItem('teamCount', currentTeamCount)
 
-    // Team card template
+    // Team card template.
     const teamCardTemplate = document.createElement('div')
     teamCardTemplate.classList.add('team-card')
     teamCardTemplate.classList.add(`team-${currentTeamCount}`)
@@ -80,7 +80,6 @@ const addTeam = () => {
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
   }
-  console.log(teamsArray)
 }
 
 addTeamsBtn.addEventListener('click', addTeam)
