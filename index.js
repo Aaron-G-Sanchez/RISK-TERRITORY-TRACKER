@@ -1,7 +1,15 @@
 // Global variables
 const maxTeams = 5
+let teamsArray
 
 let currentTeamCount = localStorage.getItem('teamCount')
+
+let tempTeamArray = localStorage.getItem('teamsArray')
+if (tempTeamArray === null) {
+  teamsArray = []
+} else {
+  teamsArray = JSON.parse(tempTeamArray)
+}
 
 let teamColors = ['Blue', 'Black', 'Green', 'Orange', 'Yellow']
 
@@ -29,8 +37,12 @@ if (currentTeamCount > 0) {
     teamNameInput.classList.add('team-name-input')
     teamNameInput.placeholder = 'Team Name'
 
+    const teamDetailsWrapper = document.createElement('div')
+    teamDetailsWrapper.classList.add('team-details')
+
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
+    teamCardTemplate.appendChild(teamDetailsWrapper)
   }
 }
 
@@ -44,6 +56,16 @@ addTeamsControl.appendChild(addTeamsBtn)
 const addTeam = () => {
   if (currentTeamCount < 5) {
     currentTeamCount++
+    // Push a team object into the array of teams
+    teamsArray.push({
+      teamName: '',
+      teamColor: '',
+      territoryCount: 0
+    })
+    // **************** //
+    // Set local storage to hold array of teams
+    localStorage.setItem('teamsArray', JSON.stringify(teamsArray))
+    // **************** //
     localStorage.setItem('teamCount', currentTeamCount)
 
     // Team card template
@@ -58,7 +80,7 @@ const addTeam = () => {
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
   }
-  console.log(currentTeamCount)
+  console.log(teamsArray)
 }
 
 addTeamsBtn.addEventListener('click', addTeam)
