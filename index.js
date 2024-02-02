@@ -25,30 +25,10 @@ teamsDisplay.classList.add('teams-display-wrapper')
 root.appendChild(addTeamsControl)
 root.appendChild(teamsDisplay)
 
-// loop through the currentTeamCount from local storage
+// loop through the teamsArray from local storage
 // If value is greater than 0.
-// if (currentTeamCount > 0) {
-//   for (let i = 0; i < currentTeamCount; i++) {
-//     const teamCardTemplate = document.createElement('div')
-//     teamCardTemplate.classList.add('team-card')
-//     teamCardTemplate.classList.add(`team-${i + 1}`)
-
-//     const teamNameInput = document.createElement('input')
-//     teamNameInput.classList.add('team-name-input')
-//     teamNameInput.placeholder = 'Team Name'
-
-//     const teamDetailsWrapper = document.createElement('div')
-//     teamDetailsWrapper.classList.add('team-details')
-
-//     teamsDisplay.appendChild(teamCardTemplate)
-//     teamCardTemplate.appendChild(teamNameInput)
-//     teamCardTemplate.appendChild(teamDetailsWrapper)
-//   }
-// }
-
 if (teamsArray.length >= 1) {
   for (const team of teamsArray) {
-    console.log(team)
     const teamCardTemplate = document.createElement('div')
     teamCardTemplate.classList.add('team-card')
     teamCardTemplate.classList.add(`team-${team.teamId}`)
@@ -58,11 +38,20 @@ if (teamsArray.length >= 1) {
     teamNameInput.placeholder = 'Team Name'
 
     const teamDetailsWrapper = document.createElement('div')
-    teamDetailsWrapper.classList.add('team-details')
+    teamDetailsWrapper.classList.add('team-details-wrapper')
+
+    const territoryCount = document.createElement('p')
+    territoryCount.innerHTML = `Territory Count: ${team.territoryCount}`
+
+    const teamId = document.createElement('p')
+    teamId.innerHTML = `${team.teamId}`
 
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
     teamCardTemplate.appendChild(teamDetailsWrapper)
+
+    teamDetailsWrapper.appendChild(teamId)
+    teamDetailsWrapper.appendChild(territoryCount)
   }
 }
 
@@ -84,6 +73,8 @@ const addTeam = () => {
       territoryCount: 0
     })
 
+    console.log(teamsArray.length)
+
     // Set local storage to hold array of teams.
     localStorage.setItem('teamsArray', JSON.stringify(teamsArray))
     // Set local storage for quick acess to team count.
@@ -98,8 +89,23 @@ const addTeam = () => {
     teamNameInput.classList.add('team-name-input')
     teamNameInput.placeholder = 'Team Name'
 
+    const teamDetailsWrapper = document.createElement('div')
+    teamDetailsWrapper.classList.add('team-details-wrapper')
+
+    const teamId = document.createElement('p')
+    teamId.innerHTML = `${teamsArray[teamsArray.length - 1].teamId}`
+
+    const territoryCount = document.createElement('p')
+    territoryCount.innerHTML = `Territory Count: ${
+      teamsArray[teamsArray.length - 1].territoryCount
+    }`
+
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
+    teamCardTemplate.appendChild(teamDetailsWrapper)
+
+    teamDetailsWrapper.appendChild(teamId)
+    teamDetailsWrapper.appendChild(territoryCount)
   }
 }
 

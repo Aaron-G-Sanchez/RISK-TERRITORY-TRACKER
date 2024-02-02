@@ -49,6 +49,8 @@ body {
   cursor: pointer;
 }
 
+
+/* Team card */
 .teams-display-wrapper {
   width: 100%;
   height: 90%;
@@ -76,6 +78,16 @@ justify-content: center;
 
 .team-name-input:focus{
   outline: none;
+}
+
+.team-details-wrapper {
+  height: 70%;
+  width: 100%;
+  background-color: rgba(243, 114, 44, .2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 
