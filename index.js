@@ -27,11 +27,31 @@ root.appendChild(teamsDisplay)
 
 // loop through the currentTeamCount from local storage
 // If value is greater than 0.
-if (currentTeamCount > 0) {
-  for (let i = 0; i < currentTeamCount; i++) {
+// if (currentTeamCount > 0) {
+//   for (let i = 0; i < currentTeamCount; i++) {
+//     const teamCardTemplate = document.createElement('div')
+//     teamCardTemplate.classList.add('team-card')
+//     teamCardTemplate.classList.add(`team-${i + 1}`)
+
+//     const teamNameInput = document.createElement('input')
+//     teamNameInput.classList.add('team-name-input')
+//     teamNameInput.placeholder = 'Team Name'
+
+//     const teamDetailsWrapper = document.createElement('div')
+//     teamDetailsWrapper.classList.add('team-details')
+
+//     teamsDisplay.appendChild(teamCardTemplate)
+//     teamCardTemplate.appendChild(teamNameInput)
+//     teamCardTemplate.appendChild(teamDetailsWrapper)
+//   }
+// }
+
+if (teamsArray.length >= 1) {
+  for (const team of teamsArray) {
+    console.log(team)
     const teamCardTemplate = document.createElement('div')
     teamCardTemplate.classList.add('team-card')
-    teamCardTemplate.classList.add(`team-${i + 1}`)
+    teamCardTemplate.classList.add(`team-${team.teamId}`)
 
     const teamNameInput = document.createElement('input')
     teamNameInput.classList.add('team-name-input')
@@ -58,6 +78,7 @@ const addTeam = () => {
     currentTeamCount++
     // Push a team object into the array of teams.
     teamsArray.push({
+      teamId: teamsArray.length + 1,
       teamName: '',
       teamColor: '',
       territoryCount: 0
