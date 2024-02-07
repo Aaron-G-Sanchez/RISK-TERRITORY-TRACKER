@@ -29,22 +29,40 @@ root.appendChild(teamsDisplay)
 // If value is greater than 0.
 if (teamsArray.length >= 1) {
   for (const team of teamsArray) {
+    // Team card
     const teamCardTemplate = document.createElement('div')
     teamCardTemplate.classList.add('team-card')
     teamCardTemplate.classList.add(`team-${team.teamId}`)
 
+    // Team name decleration
     const teamNameInput = document.createElement('input')
     teamNameInput.classList.add('team-name-input')
     teamNameInput.placeholder = 'Team Name'
+    teamNameInput.value = `${team.teamName}`
 
+    // Team details wrapper
     const teamDetailsWrapper = document.createElement('div')
     teamDetailsWrapper.classList.add('team-details-wrapper')
 
+    // Territory display
     const territoryCount = document.createElement('p')
     territoryCount.innerHTML = `Territory Count: ${team.territoryCount}`
 
+    // Territory display controls wrapper
+    const territoryControls = document.createElement('div')
+    territoryControls.classList.add('controls-wrapper')
+
+    // Territory controls
+    const addBtn = document.createElement('button')
+    addBtn.classList.add('territory-btn')
+    addBtn.innerHTML = '+'
+    const subtractBtn = document.createElement('button')
+    subtractBtn.classList.add('territory-btn')
+    subtractBtn.innerHTML = '-'
+
+    // THIS IS TEMPORARY
     const teamId = document.createElement('p')
-    teamId.innerHTML = `${team.teamId}`
+    teamId.innerHTML = `ID ${team.teamId}`
 
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
@@ -52,6 +70,10 @@ if (teamsArray.length >= 1) {
 
     teamDetailsWrapper.appendChild(teamId)
     teamDetailsWrapper.appendChild(territoryCount)
+    teamDetailsWrapper.appendChild(territoryControls)
+
+    territoryControls.appendChild(subtractBtn)
+    territoryControls.appendChild(addBtn)
   }
 }
 
@@ -73,6 +95,8 @@ const addTeam = () => {
       territoryCount: 0
     })
 
+    // THIS portion adds the card to the screen so teamName will
+    // start as an empty string
     console.log(teamsArray.length)
 
     // Set local storage to hold array of teams.
@@ -85,6 +109,8 @@ const addTeam = () => {
     teamCardTemplate.classList.add('team-card')
     teamCardTemplate.classList.add(`team-${currentTeamCount}`)
 
+    // ********** //
+    // NEED TO ADJUST THIS TO ADJUST THE TEAMNAME IN THE NEW ARRAY
     const teamNameInput = document.createElement('input')
     teamNameInput.classList.add('team-name-input')
     teamNameInput.placeholder = 'Team Name'
@@ -92,6 +118,7 @@ const addTeam = () => {
     const teamDetailsWrapper = document.createElement('div')
     teamDetailsWrapper.classList.add('team-details-wrapper')
 
+    // THIS IS TEMPORARY
     const teamId = document.createElement('p')
     teamId.innerHTML = `${teamsArray[teamsArray.length - 1].teamId}`
 

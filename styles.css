@@ -39,6 +39,7 @@ body {
   justify-content: center;
 }
 
+/* Need to adjust the button MAYBE lol */
 .btn{
   background-color: var(--primary-accent);
   padding: 1em;
@@ -48,7 +49,6 @@ body {
 .btn:hover {
   cursor: pointer;
 }
-
 
 /* Team card */
 .teams-display-wrapper {
@@ -80,6 +80,7 @@ justify-content: center;
   outline: none;
 }
 
+/* Team details wrapper */
 .team-details-wrapper {
   height: 70%;
   width: 100%;
@@ -87,7 +88,21 @@ justify-content: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
+}
+
+/* Team territory controls wrapper */
+.controls-wrapper {
+  height: 30%;
+  width: 100%;
+  display: flex;
+  align-items: center;
   justify-content: center;
+  gap: 2%;
+}
+
+.territory-btn {
+  width: calc(100%/ 5 - 2%);
 }
 
 
