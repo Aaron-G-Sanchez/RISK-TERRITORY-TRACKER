@@ -13,6 +13,20 @@ if (tempTeamArray === null) {
 
 let teamColors = ['Blue', 'Black', 'Green', 'Orange', 'Yellow']
 
+const addTerritory = ({ teamId, territoryCount }, tCount) => {
+  let count = (territoryCount += 1)
+  teamsArray[teamId - 1].territoryCount = count
+  localStorage.setItem('teamsArray', JSON.stringify(teamsArray))
+  tCount.innerHTML = `Territory Count: ${count}`
+}
+
+const subtractTerritory = ({ teamId, territoryCount }, tCount) => {
+  let count = (territoryCount -= 1)
+  teamsArray[teamId - 1].territoryCount = count
+  localStorage.setItem('teamsArray', JSON.stringify(teamsArray))
+  tCount.innerHTML = `Territory Count: ${count}`
+}
+
 // App structure setup.
 const root = document.querySelector('.root')
 
@@ -28,6 +42,7 @@ root.appendChild(teamsDisplay)
 // loop through the teamsArray from local storage
 // If value is greater than 0.
 if (teamsArray.length >= 1) {
+  // Might need to change this to be for loop with index
   for (const team of teamsArray) {
     // Team card
     const teamCardTemplate = document.createElement('div')
@@ -46,6 +61,7 @@ if (teamsArray.length >= 1) {
 
     // Territory display
     const territoryCount = document.createElement('p')
+    territoryCount.classList.add(team.teamId)
     territoryCount.innerHTML = `Territory Count: ${team.territoryCount}`
 
     // Territory display controls wrapper
@@ -54,16 +70,26 @@ if (teamsArray.length >= 1) {
 
     // Territory controls
     const addBtn = document.createElement('button')
+    addBtn.type = 'button'
     addBtn.classList.add('territory-btn')
     addBtn.innerHTML = '+'
+    addBtn.addEventListener('click', () => addTerritory(team, territoryCount))
     const subtractBtn = document.createElement('button')
     subtractBtn.classList.add('territory-btn')
     subtractBtn.innerHTML = '-'
+    // TODO Add disabled true to subract button so count can't be negative
+    // if (team.territoryCount === 0) {
+    //   subtractBtn.disabled = true
+    // }
+    subtractBtn.addEventListener('click', () =>
+      subtractTerritory(team, territoryCount)
+    )
 
     // THIS IS TEMPORARY
     const teamId = document.createElement('p')
     teamId.innerHTML = `ID ${team.teamId}`
 
+    // Append all created team display items
     teamsDisplay.appendChild(teamCardTemplate)
     teamCardTemplate.appendChild(teamNameInput)
     teamCardTemplate.appendChild(teamDetailsWrapper)
